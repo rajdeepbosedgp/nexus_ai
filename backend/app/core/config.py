@@ -1,4 +1,5 @@
 import os
+from pydantic import field_validator
 from pydantic_settings import BaseSettings
 from typing import Optional
 
@@ -7,25 +8,21 @@ class Settings(BaseSettings):
     API_V1_STR: str = "/api"
     
     # Target DB: PostgreSQL ready, SQLite local default
-    default_db_path: str = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "nexus.db")).replace("\\", "/")
-    
-    @property
-    def async_database_url(self) -> str:
-        url = os.getenv("DATABASE_URL")
-        if not url:
-            return f"sqlite+aiosqlite:///{self.default_db_path}"
-        if url.startswith("postgres://"):
-            url = url.replace("postgres://", "postgresql+asyncpg://", 1)
-        elif url.startswith("postgresql://") and not url.startswith("postgresql+asyncpg://"):
-            url = url.replace("postgresql://", "postgresql+asyncpg://", 1)
-        return url
-
     DATABASE_URL: str = ""
-    
-    def __init__(self, **values):
-        super().__init__(**values)
-        if not self.DATABASE_URL:
-            self.DATABASE_URL = self.async_database_url
+
+    @field_validator("DATABASE_URL", mode="before")
+    @classmethod
+    def assemble_db_connection(cls, v: Optional[str]) -> str:
+        if not v:
+            default_path = os.path.abspath(
+                os.path.join(os.path.dirname(__file__), "..", "..", "nexus.db")
+            ).replace("\\", "/")
+            return f"sqlite+aiosqlite:///{default_path}"
+        if v.startswith("postgres://"):
+            return v.replace("postgres://", "postgresql+asyncpg://", 1)
+        if v.startswith("postgresql://") and not v.startswith("postgresql+asyncpg://"):
+            return v.replace("postgresql://", "postgresql+asyncpg://", 1)
+        return v
     
     # JWT Auth
     JWT_SECRET: str = os.getenv("JWT_SECRET", "nexus_super_secret_jwt_key_2026_change_in_prod")
