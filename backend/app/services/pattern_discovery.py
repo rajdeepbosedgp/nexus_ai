@@ -33,11 +33,11 @@ def get_hdbscan_clusterer(min_cluster_size: int = 2):
     """
     try:
         from sklearn.cluster import HDBSCAN
-        return HDBSCAN(min_cluster_size=min_cluster_size, min_samples=1, allow_single_cluster=True, cluster_selection_epsilon=0.5, metric="euclidean")
+        return HDBSCAN(min_cluster_size=min_cluster_size, min_samples=1, allow_single_cluster=True, cluster_selection_epsilon=0.95, metric="euclidean")
     except ImportError:
         try:
             import hdbscan
-            return hdbscan.HDBSCAN(min_cluster_size=min_cluster_size, min_samples=1, allow_single_cluster=True, cluster_selection_epsilon=0.5, metric="euclidean")
+            return hdbscan.HDBSCAN(min_cluster_size=min_cluster_size, min_samples=1, allow_single_cluster=True, cluster_selection_epsilon=0.95, metric="euclidean")
         except ImportError:
             raise RuntimeError(
                 "CRITICAL SETUP ERROR: HDBSCAN is mandatory for NEXUS Emergent Pattern Discovery. "
