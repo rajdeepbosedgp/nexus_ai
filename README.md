@@ -1,6 +1,6 @@
 # NEXUS — Society Maintenance Tracker & Emergent Intelligence
 
-> **One-line pitch:** NEXUS is a society maintenance platform with a signature intelligence layer that discovers emergent operational patterns across complaint categories using sentence embeddings and density-based clustering, with every pattern mathematically scored and fully traceable to underlying complaint records.
+> NEXUS is a society maintenance platform with a signature intelligence layer that discovers emergent operational patterns across complaint categories using sentence embeddings and density-based clustering, with every pattern mathematically scored and fully traceable to underlying complaint records.
 
 ---
 
@@ -13,7 +13,7 @@
 
 ---
 
-## 🌟 Core Purpose & Key Features
+## Core Purpose & Key Features
 
 NEXUS bridges the gap between traditional siloed complaint ticketing and proactive society infrastructure management. Instead of treating complaints in isolation, NEXUS discovers hidden structural issues (e.g., rainwater seepage causing electrical shorts and wall dampness across multiple floors) that span across separate maintenance categories.
 
@@ -27,7 +27,7 @@ NEXUS bridges the gap between traditional siloed complaint ticketing and proacti
 
 ---
 
-## 🧠 Emergent Pattern Discovery Architecture
+## Emergent Pattern Discovery Architecture
 
 The signature pattern discovery pipeline operates downstream of HDBSCAN clustering:
 
@@ -67,7 +67,7 @@ $$\text{Pattern Strength} = \frac{S_{\text{cohesion}} + S_{\text{size}} + S_{\te
 
 ---
 
-## 📊 Overdue Risk Score Engine
+## Overdue Risk Score Engine
 
 Complaints on the Admin Dashboard are sorted by an automated Overdue Risk Score formula:
 
@@ -79,7 +79,7 @@ $$\text{Risk Score} = \left(\frac{\text{Days Open}}{\text{Category SLA}}\right) 
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Backend**: FastAPI (Python 3.11), Async SQLAlchemy, Pydantic v2, PyJWT, Passlib (`bcrypt==4.0.1`), `asyncpg` (PostgreSQL), `aiosqlite` (SQLite local).
 - **Machine Learning & NLP**: `sentence-transformers` (`all-MiniLM-L6-v2`), `scikit-learn` / `hdbscan`.
@@ -88,14 +88,14 @@ $$\text{Risk Score} = \left(\frac{\text{Days Open}}{\text{Category SLA}}\right) 
 
 ---
 
-## 🔑 Demo Persona Accounts
+## Demo Persona Accounts
 
 - **Admin Account**: `admin@nexus.society` / `admin123`
 - **Resident Account**: `resident@nexus.society` / `resident123`
 
 ---
 
-## 💻 Local Setup & Quick Start
+## Local Setup & Quick Start
 
 ### 1. Backend Setup & Data Seeding
 ```bash
@@ -123,7 +123,7 @@ Open `http://localhost:3000` in your browser.
 
 ---
 
-## ⚙️ Environment Variables (`.env.example`)
+## Environment Variables (`.env.example`)
 
 ```env
 PROJECT_NAME="NEXUS — Society Maintenance Tracker"
@@ -142,7 +142,7 @@ ANTHROPIC_API_KEY=""
 
 ---
 
-## 🧪 Automated Testing & Verification
+## Automated Testing & Verification
 
 Run the backend unit and integration test suite:
 ```bash
@@ -156,7 +156,7 @@ python scripts/test_browser_playwright_e2e.py
 
 ---
 
-## 🎯 Scope Boundaries & Known Limitations
+## Scope Boundaries & Known Limitations
 
 To maintain clear focus on core society intelligence:
 - **NEXUS is not a building accounting/billing tool**: Maintenance dues and payment gateway integrations are deliberately out of scope.
