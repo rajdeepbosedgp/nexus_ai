@@ -47,7 +47,7 @@ export default function DashboardPage({ user, setActiveTab }) {
   return (
     <div className="space-y-6">
       
-      {/* Header Banner */}
+      
       <div className="relative rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-indigo-500/20 p-6 overflow-hidden shadow-xl">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
@@ -73,7 +73,7 @@ export default function DashboardPage({ user, setActiveTab }) {
         </div>
       </div>
 
-      {/* Metric Cards Grid */}
+      
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
         <div className="glass-card p-4 rounded-xl">
           <div className="flex items-center justify-between text-slate-400 mb-2">
@@ -121,10 +121,10 @@ export default function DashboardPage({ user, setActiveTab }) {
         </div>
       </div>
 
-      {/* Main Content Grid: Overdue Risk Leaderboard & Category Breakdown */}
+      
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        {/* OVERDUE RISK LEADERBOARD */}
+        
         <div className="lg:col-span-2 glass-card p-5 rounded-2xl">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
@@ -171,7 +171,7 @@ export default function DashboardPage({ user, setActiveTab }) {
           </div>
         </div>
 
-        {/* COMPLAINTS BY CATEGORY */}
+        
         <div className="glass-card p-5 rounded-2xl">
           <h2 className="text-lg font-bold text-white font-['Outfit'] mb-4">Complaints by Category</h2>
           <div className="space-y-4">

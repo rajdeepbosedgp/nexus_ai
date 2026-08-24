@@ -26,7 +26,6 @@ export async function request(endpoint, options = {}) {
   return response.json();
 }
 
-// --- Auth APIs ---
 export const authApi = {
   login: (email, password) => request('/auth/login', {
     method: 'POST',
@@ -39,7 +38,6 @@ export const authApi = {
   getMe: () => request('/auth/me'),
 };
 
-// --- Complaints APIs ---
 export const complaintsApi = {
   list: (params = {}) => {
     const query = new URLSearchParams(params).toString();
@@ -72,7 +70,6 @@ export const complaintsApi = {
   }),
 };
 
-// --- Notices APIs ---
 export const noticesApi = {
   list: () => request('/notices'),
   create: (data) => request('/notices', {
@@ -81,14 +78,12 @@ export const noticesApi = {
   }),
 };
 
-// --- Patterns APIs ---
 export const patternsApi = {
   list: () => request('/patterns'),
   getDetail: (id) => request(`/patterns/${id}`),
   detect: () => request('/patterns/detect', { method: 'POST' }),
 };
 
-// --- Dashboard APIs ---
 export const dashboardApi = {
   getMetrics: () => request('/dashboard'),
 };

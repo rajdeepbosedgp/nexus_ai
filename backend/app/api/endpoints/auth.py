@@ -17,7 +17,6 @@ async def register(user_in: UserRegister, db: AsyncSession = Depends(get_db)):
     if res.scalar_one_or_none():
         raise HTTPException(status_code=400, detail="User with this email already exists.")
 
-    # Create apartment if details provided
     apt = Apartment(
         building=user_in.building or "Block A",
         floor=user_in.floor or 1,

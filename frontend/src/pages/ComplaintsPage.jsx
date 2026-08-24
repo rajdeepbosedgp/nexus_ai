@@ -7,16 +7,13 @@ export default function ComplaintsPage({ user }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Filters
   const [categoryFilter, setCategoryFilter] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
 
-  // Modals
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [selectedComplaint, setSelectedComplaint] = useState(null);
   const [showStatusModal, setShowStatusModal] = useState(false);
 
-  // Create form state
   const [category, setCategory] = useState('Plumbing');
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('Medium');
@@ -38,7 +35,6 @@ export default function ComplaintsPage({ user }) {
     }
   };
 
-  // Status transition state
   const [newStatus, setNewStatus] = useState('In Progress');
   const [statusNote, setStatusNote] = useState('');
 
@@ -98,7 +94,7 @@ export default function ComplaintsPage({ user }) {
   return (
     <div className="space-y-6">
       
-      {/* Header */}
+      
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-white font-['Outfit']">Complaints Management</h1>
@@ -118,7 +114,7 @@ export default function ComplaintsPage({ user }) {
         )}
       </div>
 
-      {/* Filter Toolbar */}
+      
       <div className="glass-card p-4 rounded-xl flex flex-wrap items-center gap-4">
         <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
           <Filter className="w-4 h-4 text-indigo-400" />
@@ -150,7 +146,7 @@ export default function ComplaintsPage({ user }) {
         </select>
       </div>
 
-      {/* Complaints List */}
+      
       <div className="space-y-4">
         {loading ? (
           <div className="text-center py-12 text-slate-400 text-xs">Loading complaints...</div>
@@ -223,7 +219,7 @@ export default function ComplaintsPage({ user }) {
                 </div>
               </div>
 
-              {/* Admin Actions */}
+              
               {user?.role === 'admin' && c.status !== 'Resolved' && (
                 <div className="pt-3 border-t border-slate-800/80 flex items-center justify-end gap-2">
                   <button
@@ -239,7 +235,7 @@ export default function ComplaintsPage({ user }) {
                 </div>
               )}
 
-              {/* Immutable History Log Preview */}
+              
               {c.history && c.history.length > 0 && (
                 <div className="pt-3 border-t border-slate-800/60 text-[11px] text-slate-400 space-y-1">
                   <div className="font-semibold text-slate-300 flex items-center gap-1">
@@ -262,7 +258,7 @@ export default function ComplaintsPage({ user }) {
         )}
       </div>
 
-      {/* CREATE COMPLAINT MODAL */}
+      
       {showCreateModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn">
           <div className="bg-[#0f172a] border border-slate-800 rounded-2xl p-6 w-full max-w-lg shadow-2xl">
@@ -369,7 +365,7 @@ export default function ComplaintsPage({ user }) {
         </div>
       )}
 
-      {/* UPDATE STATUS MODAL (ADMIN) */}
+      
       {showStatusModal && selectedComplaint && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn">
           <div className="bg-[#0f172a] border border-slate-800 rounded-2xl p-6 w-full max-w-md shadow-2xl">

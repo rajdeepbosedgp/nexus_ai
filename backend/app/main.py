@@ -9,12 +9,10 @@ from app.core.config import settings
 from app.db.database import engine, Base
 from app.api.endpoints import auth, complaints, notices, patterns, dashboard
 
-# Ensure uploads directory exists
 os.makedirs("uploads", exist_ok=True)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Initialize DB tables on startup
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
     yield
@@ -27,7 +25,6 @@ app = FastAPI(
 
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
-# CORS configuration for local React dev server
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -36,7 +33,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Router includes
 app.include_router(auth.router, prefix=settings.API_V1_STR)
 app.include_router(complaints.router, prefix=settings.API_V1_STR)
 app.include_router(notices.router, prefix=settings.API_V1_STR)

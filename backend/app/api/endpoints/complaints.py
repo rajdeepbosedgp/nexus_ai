@@ -37,7 +37,7 @@ async def upload_complaint_photo(
         ext = ".jpg"
 
     contents = await file.read()
-    max_size_bytes = 5 * 1024 * 1024  # 5 MB limit
+    max_size_bytes = 5 * 1024 * 1024
     if len(contents) > max_size_bytes:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -78,7 +78,6 @@ async def create_complaint(
     db.add(complaint)
     await db.flush()
 
-    # Initial history log entry
     history = ComplaintHistory(
         complaint_id=complaint.id,
         actor_id=current_user.id,
@@ -89,7 +88,6 @@ async def create_complaint(
     db.add(history)
     await db.commit()
 
-    # Reload with history
     stmt = select(Complaint).options(selectinload(Complaint.history)).where(Complaint.id == complaint.id)
     res = await db.execute(stmt)
     created = res.scalar_one()
@@ -166,7 +164,6 @@ async def update_complaint_status(
     old_status = complaint.status
     complaint.status = status_in.status
 
-    # Record immutable history log entry
     history = ComplaintHistory(
         complaint_id=complaint.id,
         actor_id=admin_user.id,
@@ -178,7 +175,6 @@ async def update_complaint_status(
     await db.commit()
     await db.refresh(complaint)
 
-    # Dispatch email notification to resident
     if complaint.resident and complaint.resident.email:
         await notify_complaint_status_change(
             user_email=complaint.resident.email,

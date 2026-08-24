@@ -27,20 +27,16 @@ async def get_dashboard_metrics(
     in_prog_cnt = sum(1 for c in all_complaints if c.status == "In Progress")
     resolved_cnt = sum(1 for c in all_complaints if c.status == "Resolved")
 
-    # Overdue evaluation
     overdue_cnt = sum(1 for c in all_complaints if is_complaint_overdue(c.created_at, c.category, c.status))
 
-    # Category counts
     by_cat = {}
     for c in all_complaints:
         by_cat[c.category] = by_cat.get(c.category, 0) + 1
 
-    # Detected pattern count
     pat_stmt = select(func.count(Pattern.id))
     pat_res = await db.execute(pat_stmt)
     pat_count = pat_res.scalar() or 0
 
-    # Calculate risk score and sort for top overdue list
     out_complaints = []
     for c in all_complaints:
         out = ComplaintOut.model_validate(c)

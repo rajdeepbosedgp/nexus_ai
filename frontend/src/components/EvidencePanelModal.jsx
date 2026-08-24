@@ -8,7 +8,7 @@ export default function EvidencePanelModal({ pattern, isOpen, onClose }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
       <div className="relative w-full max-w-4xl max-h-[90vh] bg-[#0b0f19] border border-violet-500/30 rounded-2xl p-6 shadow-2xl overflow-y-auto">
         
-        {/* Header */}
+        
         <div className="flex items-start justify-between border-b border-slate-800 pb-4 mb-6">
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-violet-600 to-indigo-600 flex items-center justify-center shrink-0 glow-indigo text-white font-extrabold text-lg">
@@ -38,7 +38,7 @@ export default function EvidencePanelModal({ pattern, isOpen, onClose }) {
           </button>
         </div>
 
-        {/* WHY WAS THIS DETECTED? - Signal Breakdown Grid */}
+        
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-3 text-xs font-bold uppercase tracking-wider text-violet-400">
             <Sparkles className="w-4 h-4 text-violet-400" />
@@ -72,7 +72,7 @@ export default function EvidencePanelModal({ pattern, isOpen, onClose }) {
           </div>
         </div>
 
-        {/* SOURCE EVIDENCE COMPLAINTS GRID */}
+        
         <div>
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-300">
@@ -134,7 +134,7 @@ export default function EvidencePanelModal({ pattern, isOpen, onClose }) {
           </div>
         </div>
 
-        {/* Footer Note */}
+        
         <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
           <div>Detected at: {new Date(pattern.detected_at).toLocaleString()}</div>
           <div className="text-violet-400 font-medium">NEXUS Emergent Discovery Engine v1.0</div>

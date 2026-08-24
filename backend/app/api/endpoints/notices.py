@@ -26,7 +26,6 @@ async def create_notice(
     await db.commit()
     await db.refresh(notice)
 
-    # If marked as important, notify residents
     if notice.is_important:
         stmt = select(User.email).where(User.role == "resident")
         res = await db.execute(stmt)
@@ -41,7 +40,6 @@ async def list_notices(
     current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db)
 ):
-    # Pinned important notices first, then sorted by date descending
     stmt = select(Notice).order_by(desc(Notice.is_important), desc(Notice.created_at))
     res = await db.execute(stmt)
     notices = res.scalars().all()

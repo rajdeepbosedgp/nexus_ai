@@ -6,7 +6,6 @@ from app.services.pattern_discovery import (
 )
 
 def test_pure_scoring_function_equal_weights():
-    # Test case: 10 complaints, 4 categories, zero time span, perfect vectors
     embeddings = [[1.0, 0.0, 0.0] for _ in range(10)]
     categories = ["Plumbing", "Cleaning", "General", "Electrical"] * 2 + ["Plumbing", "Cleaning"]
     now = datetime.now(timezone.utc)
@@ -16,14 +15,13 @@ def test_pure_scoring_function_equal_weights():
         embeddings, categories, timestamps
     )
 
-    assert cohesion == 100.0  # perfect similarity
-    assert size_score == 80.0  # (10-2)/10 * 100
-    assert category_score == 75.0  # (4-1)/4 * 100
-    assert temporal_score == 100.0  # 0 span
-    assert strength == round((100.0 + 80.0 + 75.0 + 100.0) / 4.0, 2)  # 88.75
+    assert cohesion == 100.0
+    assert size_score == 80.0
+    assert category_score == 75.0
+    assert temporal_score == 100.0
+    assert strength == round((100.0 + 80.0 + 75.0 + 100.0) / 4.0, 2)
 
 def test_cosine_normalization_bounds():
-    # Negative cosine similarity vectors (-1)
     embeddings = [[1.0, 0.0], [-1.0, 0.0]]
     categories = ["Plumbing", "Electrical"]
     now = datetime.now(timezone.utc)
@@ -33,12 +31,11 @@ def test_cosine_normalization_bounds():
         embeddings, categories, timestamps
     )
 
-    assert cohesion == 0.0  # (-1 + 1)/2 * 100 = 0
+    assert cohesion == 0.0
     assert 0.0 <= strength <= 100.0
 
 @pytest.mark.asyncio
 async def test_single_category_filter():
-    # 6 complaints all in Plumbing -> Must yield 0 patterns due to >=2 category requirement
     now = datetime.now(timezone.utc)
     complaints = [
         {
@@ -51,11 +48,10 @@ async def test_single_category_filter():
         for i in range(6)
     ]
     patterns = await discover_emergent_patterns(complaints)
-    assert len(patterns) == 0  # Fails cross-category filter
+    assert len(patterns) == 0
 
 @pytest.mark.asyncio
 async def test_insufficient_data_filter():
-    # 2 complaints -> Skipped
     now = datetime.now(timezone.utc)
     complaints = [
         {"id": "1", "category": "Plumbing", "description": "Leak A", "created_at": now, "weather_event": None},
@@ -66,7 +62,6 @@ async def test_insufficient_data_filter():
 
 @pytest.mark.asyncio
 async def test_duplicate_complaints_same_category():
-    # Identical text in same category -> 0 patterns detected (fails cross-category filter)
     now = datetime.now(timezone.utc)
     complaints = [
         {"id": f"dup_{i}", "category": "Plumbing", "description": "Water leaking from main kitchen pipe duct", "created_at": now, "weather_event": None}
@@ -77,7 +72,6 @@ async def test_duplicate_complaints_same_category():
 
 @pytest.mark.asyncio
 async def test_strong_pattern_discovery_behavior():
-    # 10 complaints across 4 categories during Heavy Rain -> Behavioral pattern check
     now = datetime.now(timezone.utc)
     strong_items = [
         ("Plumbing", "Water collecting and pooling near C-204 ceiling joint after heavy rain", "Heavy Rain"),

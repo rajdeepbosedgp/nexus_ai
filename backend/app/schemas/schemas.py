@@ -2,12 +2,11 @@ from pydantic import BaseModel, EmailStr
 from datetime import datetime
 from typing import Optional, List
 
-# --- Auth Schemas ---
 class UserRegister(BaseModel):
     name: str
     email: EmailStr
     password: str
-    role: str = "resident"  # "resident" or "admin"
+    role: str = "resident"
     building: Optional[str] = "Block A"
     floor: Optional[int] = 1
     unit_number: Optional[str] = "101"
@@ -31,16 +30,15 @@ class Token(BaseModel):
     token_type: str = "bearer"
     user: UserOut
 
-# --- Complaint Schemas ---
 class ComplaintCreate(BaseModel):
-    category: str  # Electrical, Plumbing, Cosmetic, Cleaning, General
+    category: str
     description: str
     photo_url: Optional[str] = None
     priority: Optional[str] = "Medium"
     weather_event: Optional[str] = None
 
 class ComplaintStatusUpdate(BaseModel):
-    status: str  # Open, In Progress, Resolved
+    status: str
     note: Optional[str] = "Status updated"
 
 class ComplaintHistoryOut(BaseModel):
@@ -72,7 +70,6 @@ class ComplaintOut(BaseModel):
     class Config:
         from_attributes = True
 
-# --- Notice Schemas ---
 class NoticeCreate(BaseModel):
     title: str
     body: str
@@ -89,7 +86,6 @@ class NoticeOut(BaseModel):
     class Config:
         from_attributes = True
 
-# --- Emergent Pattern Schemas ---
 class PatternOut(BaseModel):
     id: str
     name: str
@@ -113,7 +109,6 @@ class PatternDetectResponse(BaseModel):
     patterns: List[PatternOut]
     message: str
 
-# --- Dashboard Schemas ---
 class DashboardOut(BaseModel):
     total_complaints: int
     open_count: int

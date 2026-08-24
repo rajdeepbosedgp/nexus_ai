@@ -17,7 +17,6 @@ async def trigger_pattern_discovery(
     admin_user: User = Depends(require_admin),
     db: AsyncSession = Depends(get_db)
 ):
-    # Fetch all open / in-progress complaints to run detection on
     stmt = select(Complaint)
     res = await db.execute(stmt)
     complaints = res.scalars().all()
@@ -54,7 +53,6 @@ async def trigger_pattern_discovery(
 
     await db.commit()
 
-    # Hydrate pattern output with linked complaints
     out_patterns = []
     for p in pattern_objects:
         await db.refresh(p)

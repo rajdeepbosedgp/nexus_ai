@@ -48,7 +48,7 @@ export default function PatternsPage({ user }) {
   return (
     <div className="space-y-8">
       
-      {/* Header Banner */}
+      
       <div className="relative rounded-2xl bg-gradient-to-r from-violet-950/60 via-indigo-900/40 to-slate-900 border border-violet-500/30 p-6 overflow-hidden shadow-2xl">
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
@@ -91,7 +91,7 @@ export default function PatternsPage({ user }) {
         </div>
       )}
 
-      {/* DISCOVERED PATTERNS LIST */}
+      
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-white font-['Outfit'] flex items-center gap-2">
@@ -137,7 +137,7 @@ export default function PatternsPage({ user }) {
                       <h3 className="text-lg font-bold text-white font-['Outfit']">{pat.name}</h3>
                     </div>
 
-                    {/* Score Badge */}
+                    
                     <div className="text-center px-3 py-1.5 rounded-xl bg-violet-950/60 border border-violet-500/40 shrink-0">
                       <div className="text-[9px] uppercase font-semibold text-violet-300">Pattern Strength</div>
                       <div className="text-xl font-extrabold text-white font-['Outfit']">{Math.round(pat.strength_score)}/100</div>
@@ -148,7 +148,7 @@ export default function PatternsPage({ user }) {
                     {pat.description}
                   </p>
 
-                  {/* Micro Heuristics Bar */}
+                  
                   <div className="grid grid-cols-4 gap-2 p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-center mb-4">
                     <div>
                       <div className="text-[9px] text-slate-400">Cohesion</div>
@@ -186,7 +186,7 @@ export default function PatternsPage({ user }) {
         )}
       </div>
 
-      {/* PIPELINE ARCHITECTURE CARD */}
+      
       <div className="glass-card p-6 rounded-2xl border-slate-800">
         <h3 className="text-base font-bold text-white font-['Outfit'] mb-3 flex items-center gap-2">
           <Shield className="w-4 h-4 text-indigo-400" />
@@ -220,7 +220,7 @@ export default function PatternsPage({ user }) {
         </div>
       </div>
 
-      {/* EVIDENCE PANEL MODAL */}
+      
       <EvidencePanelModal
         pattern={selectedPattern}
         isOpen={showEvidenceModal}

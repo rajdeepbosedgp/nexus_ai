@@ -45,7 +45,7 @@ export default function NoticesPage({ user }) {
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
       
-      {/* Header */}
+      
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-white font-['Outfit']">Society Notice Board</h1>
@@ -63,7 +63,7 @@ export default function NoticesPage({ user }) {
         )}
       </div>
 
-      {/* Notices Feed */}
+      
       <div className="space-y-4">
         {loading ? (
           <div className="text-center py-12 text-slate-400 text-xs">Loading notice board...</div>
@@ -106,7 +106,7 @@ export default function NoticesPage({ user }) {
         )}
       </div>
 
-      {/* POST NOTICE MODAL */}
+      
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn">
           <div className="bg-[#0f172a] border border-slate-800 rounded-2xl p-6 w-full max-w-lg shadow-2xl">

@@ -3,7 +3,6 @@ from app.services.overdue import calculate_overdue_risk_score, is_complaint_over
 
 def test_overdue_risk_score_calculation():
     now = datetime.now(timezone.utc)
-    # Electrical threshold is 2 days. Created 4 days ago -> risk score should be 4.0 / 2.0 = 2.0
     created_at = now - timedelta(days=4)
     risk_score = calculate_overdue_risk_score(created_at, "Electrical", "Open")
     assert risk_score == 2.0

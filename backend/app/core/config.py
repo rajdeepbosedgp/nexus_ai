@@ -7,7 +7,6 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "NEXUS — Society Maintenance Tracker"
     API_V1_STR: str = "/api"
     
-    # Target DB: PostgreSQL ready, SQLite local default
     DATABASE_URL: str = ""
 
     @field_validator("DATABASE_URL", mode="before")
@@ -24,12 +23,10 @@ class Settings(BaseSettings):
             return v.replace("postgresql://", "postgresql+asyncpg://", 1)
         return v
     
-    # JWT Auth
     JWT_SECRET: str = os.getenv("JWT_SECRET", "nexus_super_secret_jwt_key_2026_change_in_prod")
     JWT_ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7
     
-    # Notifications & LLM (Optional keys with fallbacks)
     RESEND_API_KEY: Optional[str] = os.getenv("RESEND_API_KEY", None)
     OPENAI_API_KEY: Optional[str] = os.getenv("OPENAI_API_KEY", None)
     ANTHROPIC_API_KEY: Optional[str] = os.getenv("ANTHROPIC_API_KEY", None)

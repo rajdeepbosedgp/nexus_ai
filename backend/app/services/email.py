@@ -40,7 +40,6 @@ async def send_email(to_email: str, subject: str, body: str) -> bool:
         except Exception as e:
             logger.error(f"Error calling Resend API: {e}. Falling back to console log.")
 
-    # Fallback console dispatch
     logger.info(f"DISPATCHED to [{to_email}] | Subject: '{subject}' | Body: '{body[:100]}...'")
     return True
 

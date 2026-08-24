@@ -57,7 +57,7 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn">
       <div className="relative w-full max-w-md bg-[#0f172a] border border-slate-800 rounded-2xl p-6 shadow-2xl overflow-hidden">
         
-        {/* Close Button */}
+        
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
@@ -65,7 +65,7 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
           <X className="w-5 h-5" />
         </button>
 
-        {/* Title */}
+        
         <div className="text-center mb-6">
           <div className="w-12 h-12 rounded-2xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center mx-auto mb-3 text-indigo-400">
             <Sparkles className="w-6 h-6" />
@@ -78,7 +78,7 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
           </p>
         </div>
 
-        {/* Demo Fast Login Buttons */}
+        
         <div className="mb-6 bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-center">
           <div className="text-[11px] font-semibold uppercase text-slate-400 mb-2 tracking-wider">
             Quick Demo Persona Login
@@ -109,7 +109,7 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
           </div>
         )}
 
-        {/* Form */}
+        
         <form onSubmit={handleSubmit} className="space-y-4">
           {isRegister && (
             <div>

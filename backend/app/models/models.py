@@ -25,7 +25,7 @@ class User(Base):
     name: Mapped[str] = mapped_column(String(100), nullable=False)
     email: Mapped[str] = mapped_column(String(100), unique=True, index=True, nullable=False)
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
-    role: Mapped[str] = mapped_column(String(20), default="resident")  # "resident" or "admin"
+    role: Mapped[str] = mapped_column(String(20), default="resident")
     apartment_id: Mapped[str | None] = mapped_column(String(36), ForeignKey("apartments.id"), nullable=True)
 
     apartment: Mapped[Apartment | None] = relationship("Apartment", back_populates="users")
@@ -38,11 +38,11 @@ class Complaint(Base):
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=generate_uuid)
     resident_id: Mapped[str] = mapped_column(String(36), ForeignKey("users.id"), nullable=False)
     apartment_id: Mapped[str | None] = mapped_column(String(36), ForeignKey("apartments.id"), nullable=True)
-    category: Mapped[str] = mapped_column(String(50), nullable=False)  # Plumbing, Electrical, Cosmetic, Cleaning, General
+    category: Mapped[str] = mapped_column(String(50), nullable=False)
     description: Mapped[str] = mapped_column(Text, nullable=False)
     photo_url: Mapped[str | None] = mapped_column(Text, nullable=True)
-    priority: Mapped[str] = mapped_column(String(20), default="Medium")  # Low, Medium, High
-    status: Mapped[str] = mapped_column(String(20), default="Open")  # Open, In Progress, Resolved
+    priority: Mapped[str] = mapped_column(String(20), default="Medium")
+    status: Mapped[str] = mapped_column(String(20), default="Open")
     weather_event: Mapped[str | None] = mapped_column(String(100), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc))
 
@@ -87,7 +87,7 @@ class Pattern(Base):
     size: Mapped[float] = mapped_column(Float, nullable=False)
     category_spread: Mapped[float] = mapped_column(Float, nullable=False)
     temporal_concentration: Mapped[float] = mapped_column(Float, nullable=False)
-    complaint_ids: Mapped[list] = mapped_column(JSON, nullable=False)  # List of complaint IDs linked to pattern
-    label_source: Mapped[str] = mapped_column(String(20), default="llm")  # "llm" or "fallback"
+    complaint_ids: Mapped[list] = mapped_column(JSON, nullable=False)
+    label_source: Mapped[str] = mapped_column(String(20), default="llm")
     detected_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc))
-    status: Mapped[str] = mapped_column(String(20), default="Active")  # Active, Acknowledged, Resolved
+    status: Mapped[str] = mapped_column(String(20), default="Active")

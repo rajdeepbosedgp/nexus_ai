@@ -3,7 +3,6 @@ import os
 import sys
 from datetime import datetime, timedelta, timezone
 
-# Add backend directory to python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "backend")))
 
 from app.db.database import AsyncSessionLocal, engine, Base
@@ -58,9 +57,6 @@ async def seed_data():
 
         now = datetime.now(timezone.utc)
 
-        # ----------------------------------------------------
-        # SCENARIO 1: STRONG PATTERN (10 complaints, 4 categories, Heavy Rain)
-        # ----------------------------------------------------
         print("Seeding Scenario 1: Strong Pattern ('Post-Rain Structural Moisture — Block C')...")
         strong_complaints_data = [
             ("Plumbing", "Water collecting and pooling near C-204 ceiling joint after heavy rain", "Heavy Rain", 0.1),
@@ -97,9 +93,6 @@ async def seed_data():
                 timestamp=c.created_at
             ))
 
-        # ----------------------------------------------------
-        # SCENARIO 2: WEAK PATTERN (3 complaints, 2 categories, 6-day span)
-        # ----------------------------------------------------
         print("Seeding Scenario 2: Weak Pattern...")
         weak_data = [
             ("Plumbing", "Minor pipe vibration noise in kitchen tap", 6.0),
@@ -126,9 +119,6 @@ async def seed_data():
                 timestamp=c.created_at
             ))
 
-        # ----------------------------------------------------
-        # SCENARIO 3: NULL PATTERN (Uncorrelated Noise)
-        # ----------------------------------------------------
         print("Seeding Scenario 3: Null Pattern (Uncorrelated noise)...")
         null_data = [
             ("Cosmetic", "Gym treadmill display screen flickering", 5.0),
@@ -156,9 +146,6 @@ async def seed_data():
                 timestamp=c.created_at
             ))
 
-        # ----------------------------------------------------
-        # SCENARIO 4: SINGLE CATEGORY PLUMBING CLUSTER
-        # ----------------------------------------------------
         print("Seeding Scenario 4: Single Category Plumbing Cluster in Block B...")
         for i in range(6):
             c = Complaint(
@@ -172,9 +159,6 @@ async def seed_data():
             )
             db.add(c)
 
-        # ----------------------------------------------------
-        # SCENARIO 5: DUPLICATE COMPLAINTS (Same category, identical strings -> 0 patterns)
-        # ----------------------------------------------------
         print("Seeding Scenario 5: Duplicate Complaints (Identical Plumbing text across residents)...")
         dup_residents = [res1, res2, res3, res1, res2]
         for i, res in enumerate(dup_residents):
@@ -197,9 +181,6 @@ async def seed_data():
                 timestamp=c.created_at
             ))
 
-        # ----------------------------------------------------
-        # NOTICES
-        # ----------------------------------------------------
         print("Seeding Notices...")
         n1 = Notice(
             admin_id=admin.id,
@@ -217,7 +198,6 @@ async def seed_data():
         )
         db.add_all([n1, n2])
 
-        # Overdue item example (Electrical complaint open 5 days ago -> Overdue!)
         overdue_c = Complaint(
             resident_id=res1.id,
             apartment_id=apt_res1.id,

@@ -1,6 +1,5 @@
 from datetime import datetime, timezone
 
-# Resolution thresholds in days per predefined category
 CATEGORY_THRESHOLDS_DAYS = {
     "Electrical": 2.0,
     "Plumbing": 3.0,
