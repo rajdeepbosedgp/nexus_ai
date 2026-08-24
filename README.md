@@ -4,7 +4,7 @@
 
 ---
 
-## 🔗 Live Links & Repository
+## Live Links & Repository
 
 * **GitHub Repository:** [https://github.com/rajdeepbosedgp/nexus_ai](https://github.com/rajdeepbosedgp/nexus_ai)
 * **Live Production Frontend (Vercel):** [https://nexus-ai-rb-b912.vercel.app](https://nexus-ai-rb-b912.vercel.app)
